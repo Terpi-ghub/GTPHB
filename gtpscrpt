@@ -11,6 +11,10 @@ game.StarterGui:SetCore("SendNotification", {
     Title = "Hello!";
     Text = "GTP Hub loaded.";
 })
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Join the Discord";
+    Text = "https://discord.gg/JmJxFWTRFE";
+})
 
 --Local Player
 local Player = Window:NewTab("#Player")

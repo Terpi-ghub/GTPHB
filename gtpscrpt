@@ -1,0 +1,95 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local colors = {
+    SchemeColor = Color3.fromRGB(10,10,10),
+    Background = Color3.fromRGB(5, 5, 5),
+    Header = Color3.fromRGB(10, 10, 10),
+    TextColor = Color3.fromRGB(230,230,230),
+    ElementColor = Color3.fromRGB(18, 18, 18)
+}
+local Window = Library.CreateLib("GTP Hub", colors)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Hello!";
+    Text = "GTP Hub loaded.";
+})
+
+--Local Player
+local Player = Window:NewTab("#Player")
+local PlayerSection = Player:NewSection("#Player")
+
+PlayerSection:NewSlider("Walk Speed", "Changes your speed.", 500, 32, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+PlayerSection:NewSlider("Jump Power", "Changes your jump power.", 500, 62, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+
+
+local Teleports = Window:NewTab("#Teleports")
+local TeleportsSection = Teleports:NewSection("#Teleports")
+
+
+TeleportsSection:NewButton("Forest", "Teleports you to forest.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-52.1900978, 32.2976074, -16.5189285, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+TeleportsSection:NewButton("Canyons", "Teleports you to canyons.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-632.318787, 81.5784149, 194.976166, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+TeleportsSection:NewButton("Caves/Crystals", "Teleports you to caves.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(279.298981, 16.4302692, 115.570145, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+TeleportsSection:NewButton("Ice/Mountains", "Teleports you to the ice map.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1213.18201, 75.9124527, -1356.21423, 0.581770182, -0, -0.81335324, 0, 1, -0, 0.81335324, 0, 0.581770182)
+end)
+
+TeleportsSection:NewButton("City/Shop", "Teleports you to city.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-222.796295, 29.3261833, 611.913818, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+end)
+
+TeleportsSection:NewButton("Safe Spot/Memes", "Teleports you to a safe spot.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-368.950928, 0.492185682, -249.027237, 1, -3.20234994e-09, -9.53963797e-10, 3.20234994e-09, 1, 1.25086708e-09, 9.53963797e-10, -1.25086708e-09, 1)
+end)
+
+TeleportsSection:NewButton("Lobby", "Teleports you to the lobby.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-54.3706589, 57.210968, -96.3788986, -0.858532667, 0, -0.512759089, 0, 1, 0, 0.512759089, 0, -0.858532667)
+end)
+
+TeleportsSection:NewButton("Secret Forest", "Teleports you to different forest.", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(389.628479, 116.682083, -777.650452, 0.790552199, 4.48209754e-08, -0.612394631, -1.5121504e-08, 1, 5.36690479e-08, 0.612394631, -3.31678578e-08, 0.790552199)
+end)
+
+
+local UI = Window:NewTab("#UI")
+local UISection = UI:NewSection("#UI")
+
+UISection:NewKeybind("Toggle UI Keybind", "Change keybind for toggling UI.", Enum.KeyCode.Q, function()
+    Library:ToggleUI()
+end)
+
+local Misc = Window:NewTab("#Misc")
+local MiscSection = Misc:NewSection("#Misc")
+
+MiscSection:NewToggle("Anti AFK", "Makes you not be kicked for idle.", function(state)
+    if state then
+        for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+            v:Disable()
+        end
+    else
+        for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+            v:Enable()
+        end
+    end
+end)
+
+MiscSection:NewButton("Infinite Yield", "Admin commands.", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+local Credits = Window:NewTab("#Credits")
+local CreditsSection = Credits:NewSection("#Credits")
+
+CreditsSection:NewLabel("Creator: MeetD3athNigth(User)")
+CreditsSection:NewLabel("UI: Kavo-UI-Library")
